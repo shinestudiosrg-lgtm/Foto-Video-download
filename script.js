@@ -14,7 +14,6 @@ async function getMedia() {
   downloads.innerHTML = "";
 
   try {
-    // API multi platform (contoh gratis)
     const res = await fetch(`https://api.tiklydown.eu.org/api/download?url=${encodeURIComponent(url)}`);
     const data = await res.json();
 
@@ -23,21 +22,20 @@ async function getMedia() {
     // Preview
     if (data.video) {
       preview.innerHTML = `<video controls src="${data.video}"></video>`;
-    } else if (data.image) {
-      preview.innerHTML = `<img src="${data.image}">`;
-    }
-
-    // Download options
-    if (data.video) {
-      downloads.innerHTML += `<a href="${data.video}" target="_blank">Download Video</a>`;
-    }
-
-    if (data.music) {
-      downloads.innerHTML += `<a href="${data.music}" target="_blank">Download Audio</a>`;
+      downloads.innerHTML += `<a href="${data.video}" target="_blank">⬇️ Download Video</a>`;
+    } 
+    else if (data.images && data.images.length > 0) {
+      data.images.forEach(img => {
+        preview.innerHTML += `<img src="${img}">`;
+        downloads.innerHTML += `<a href="${img}" target="_blank">⬇️ Download Foto</a>`;
+      });
+    } 
+    else {
+      downloads.innerHTML = "❌ Tidak bisa ambil media dari link ini.";
     }
 
   } catch (err) {
     loader.classList.add("hidden");
-    downloads.innerHTML = "Gagal mengambil data. Coba link lain.";
+    downloads.innerHTML = "❌ Error / API sedang down. Coba lagi nanti.";
   }
 }

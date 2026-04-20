@@ -1,26 +1,99 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shine Downloader Pro</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shine Media Fetcher</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="shell">
+    <section class="panel main">
+      <div class="brand">
+        <div class="logo">Sh</div>
+        <div>
+          <div class="eyebrow">PROFESSIONAL MEDIA TOOL</div>
+          <h1>Shine Media Fetcher</h1>
+        </div>
+      </div>
 
-<div class="app">
-  <h1>✨ Shine Downloader Pro</h1>
-  <p>Download Video & Foto Tanpa Ribet</p>
+      <p class="lead">
+        Tool ini untuk membuka preview dan menyiapkan download dari direct URL yang memang kamu miliki atau berhak kamu unduh.
+        Cocok untuk file video, gambar, atau audio dari server/cloud kamu sendiri.
+      </p>
 
-  <input type="text" id="url" placeholder="Paste link di sini...">
-  <button onclick="getMedia()">Download</button>
+      <div class="notice">
+        Gunakan hanya untuk file milik sendiri atau yang memang kamu punya izin untuk mengunduh. Tool ini tidak dibuat untuk mengambil media dari platform pihak ketiga yang membatasi download.
+      </div>
 
-  <div id="loader" class="hidden">⏳ Processing...</div>
+      <div class="field">
+        <label for="url">Direct URL Media</label>
+        <input id="url" type="url" placeholder="https://contoh.com/file-video.mp4 atau https://domain.com/foto.jpg" />
+      </div>
 
-  <div id="preview"></div>
-  <div id="downloads"></div>
-</div>
+      <div class="field">
+        <label for="filename">Nama file download</label>
+        <input id="filename" type="text" placeholder="contoh: shine-media" />
+      </div>
 
-<script src="script.js"></script>
+      <div class="field">
+        <label for="type">Jenis media</label>
+        <select id="type">
+          <option value="auto">Deteksi otomatis</option>
+          <option value="video">Video</option>
+          <option value="image">Gambar</option>
+          <option value="audio">Audio</option>
+        </select>
+      </div>
+
+      <div class="actions">
+        <button class="primary" onclick="loadMedia()">Preview Media</button>
+        <button class="secondary" onclick="resetApp()">Reset</button>
+      </div>
+
+      <div id="status" class="status">Belum ada media yang dimuat.</div>
+
+      <div id="preview" class="preview empty">
+        Preview media akan tampil di sini setelah URL valid dimasukkan.
+      </div>
+    </section>
+
+    <aside class="panel side">
+      <div class="card">
+        <span class="pill">READY TO DOWNLOAD</span>
+        <h3>Download Panel</h3>
+        <div class="meta" id="metaBox">
+          <div class="meta-row"><span>Status</span><strong id="metaStatus">Menunggu URL</strong></div>
+          <div class="meta-row"><span>Tipe</span><strong id="metaType">-</strong></div>
+          <div class="meta-row"><span>Nama file</span><strong id="metaFile">-</strong></div>
+        </div>
+        <div class="download-box" id="downloadBox" style="margin-top:14px;">
+          <a id="downloadLink" class="btn primary" href="#" download>Download Media</a>
+          <a id="openLink" class="btn secondary" href="#" target="_blank" rel="noopener">Buka di Tab Baru</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Format yang didukung</h3>
+        <ul>
+          <li>Video: mp4, webm, mov, m4v</li>
+          <li>Gambar: jpg, jpeg, png, webp, gif</li>
+          <li>Audio: mp3, wav, ogg, m4a</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Cara pakai</h3>
+        <ul>
+          <li>Tempel direct link media.</li>
+          <li>Pilih auto detect atau jenis file manual.</li>
+          <li>Klik Preview Media.</li>
+          <li>Kalau berhasil, tombol download akan aktif.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
